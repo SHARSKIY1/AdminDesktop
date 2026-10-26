@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1728" d:DesignHeight="1000"
+             x:Class="AdminDesktop.OnlineContent"
+             Background="#242C38">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" Margin="50,40,0,0">
+                <Ellipse Fill="Blue" Width="15" Height="15"/>
+                <TextBlock 
+                    Text="Всего зарегистрированных пользователей: "
+                    FontSize="20" 
+                    Foreground="White" 
+                    FontFamily="fonts:Inter#Inter"
+                    VerticalAlignment="Center"
+                    Margin="20,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

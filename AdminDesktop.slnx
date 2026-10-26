@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AdminDesktop/AdminDesktop.csproj" />
+  <Project Path="Entities/Entities.csproj" Id="0a0d4219-d459-4751-822f-148e7bf2f84e" />
+</Solution>

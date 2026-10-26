@@ -1,0 +1,24 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="Button.Selection">
+        <Setter Property="FontFamily" Value="fonts:Inter#Inter"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#242C38"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="Height" Value="40"/>
+    </Style>
+
+    <Style Selector="Button.Selection:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#354762"/>
+        <Setter Property="TextElement.Foreground" Value="White"/>
+    </Style>
+</Styles>
