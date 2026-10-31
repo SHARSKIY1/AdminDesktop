@@ -1,0 +1,10 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1053" d:DesignHeight="36"
+             x:Class="AdminDesktop.Controls.General.SearchBar">
+    <Border BorderBrush="#4B316C" BorderThickness="2" CornerRadius="11" Background="#5B627B">
+        <Image Source="avares://AdminDesktop/Images/SearchIcon.png" Width="36" Height="36" HorizontalAlignment="Left"/>
+    </Border>
+</UserControl>

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="80"
+             x:Class="AdminDesktop.Controls.General.GameCard">
+    <Grid Background="#5B627B">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="avares://AdminDesktop/Images/GameIcon.png" HorizontalAlignment="Left" Grid.RowSpan="3"/>
+        <TextBlock Text="Liona" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,15,0,0" Height="29"/>
+        <TextBlock Text="Liona" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,15,0,0" Height="29"/>
+    </Grid>
+</UserControl>

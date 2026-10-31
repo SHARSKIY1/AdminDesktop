@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>AdminDesktop</RootNamespace>
     <OutputType>WinExe</OutputType>
@@ -25,8 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\OnlineContent.axaml.cs">
+    <Compile Update="Controls\PageContent\OnlineContent.axaml.cs">
       <DependentUpon>OnlineContent.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Images\**" />
+	</ItemGroup>
 </Project>

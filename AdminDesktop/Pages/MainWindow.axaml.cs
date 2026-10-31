@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using AdminDesktop.Controls.General;
+using Avalonia;
 using Avalonia.Controls;
 
 
@@ -19,5 +20,10 @@ public partial class MainWindow : Window
     private void Show_Online(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         ContentArea.Content = new OnlineContent();
+    }
+
+    private void Show_Users(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentArea.Content = new SearchBar();
     }
 }
