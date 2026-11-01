@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:general="using:AdminDesktop.Controls.General"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AdminDesktop.Controls.PageContent.UsersContent">
+
+    <Grid Background="#242C38">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" MinWidth="580"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel Margin="16" Spacing="10">
+                <general:SearchBar VerticalAlignment="Top" Height="36" />
+                <StackPanel Spacing="10" Background="#5B627B">
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1">
+        <general:Add_Edit_ControlBar Grid.Column="1"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

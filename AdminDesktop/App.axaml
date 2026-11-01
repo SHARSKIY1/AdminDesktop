@@ -10,5 +10,6 @@
         <StyleInclude Source="/Styles/TextStyle.axaml"/>
         <StyleInclude Source="/Styles/TextBoxStyle.axaml"/>
         <StyleInclude Source="/Styles/MenuButton.axaml"/>
+        <StyleInclude Source="/Styles/ToggleButtonStyle.axaml"/>
     </Application.Styles>
 </Application>
