@@ -12,8 +12,7 @@
                 <TextBlock 
                     Text="Всего зарегистрированных пользователей: "
                     FontSize="20" 
-                    Foreground="White" 
-                    FontFamily="fonts:Inter#Inter"
+                    Classes="TextStyle"
                     VerticalAlignment="Center"
                     Margin="20,0,0,0"/>
             </StackPanel>
