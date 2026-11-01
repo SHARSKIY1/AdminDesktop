@@ -4,7 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:general="using:AdminDesktop.Controls.General"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AdminDesktop.Controls.PageContent.GameCatalog">
+             x:Class="AdminDesktop.Controls.PageContent.GameCatalog"
+             xmlns:entities="using:Entities"
+             xmlns:pageContent="using:AdminDesktop.Controls.PageContent"
+             x:DataType="pageContent:GameCatalog">
 
     <Grid Background="#242C38">
         <Grid.ColumnDefinitions>
@@ -15,24 +18,18 @@
             <StackPanel Margin="16" Spacing="10">
                 <general:SearchBar VerticalAlignment="Top" Height="36" />
                 <StackPanel Spacing="10" Background="#5B627B">
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
+                    <ItemsControl ItemsSource="{Binding Games}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="entities:Game">
+                                <general:GameCard/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1">
-        <general:Add_Edit_ControlBar Grid.Column="1"/>
+            <general:Add_Edit_ControlBar Grid.Column="1"/>
         </ScrollViewer>
     </Grid>
 </UserControl>
