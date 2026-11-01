@@ -1,7 +1,8 @@
 ﻿using Avalonia;
-using System;
 using Entities.DataDB;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace AdminDesktop;
 
@@ -32,8 +33,13 @@ class Program
 
     public static AppDataBase CreateDbContext()
     {
-        var connectionString =
-            "Host=localhost;Port=5432;Database=AdminDesktopDB;Username=postgres;Password=322";
+        var configuration = new ConfigurationBuilder()
+        .SetBasePath(AppContext.BaseDirectory)
+        .AddJsonFile("appsettings.json")
+        .Build();
+
+        var connectionString = configuration
+            .GetConnectionString("DefaultConnection");
 
         var options = new DbContextOptionsBuilder<AppDataBase>()
             .UseNpgsql(connectionString)
