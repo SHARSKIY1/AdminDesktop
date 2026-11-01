@@ -3,9 +3,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:general="using:AdminDesktop.Controls.General"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="900"
-             x:Class="AdminDesktop.Controls.PageContent.UsersContent">
+             mc:Ignorable="d" d:DesignWidth="1700" d:DesignHeight="952"
+             x:Class="AdminDesktop.Controls.PageContent.UsersContent"
+             >
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel Margin="16" Spacing="10">
+                <general:SearchBar VerticalAlignment="Top" Height="36" />
+                <StackPanel Spacing="10" Background="#5B627B">
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                    <general:GameCard/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Column="1">
+            <general:Add_Edit_ControlBar/>
+        </StackPanel>
     </Grid>
 </UserControl>

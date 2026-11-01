@@ -1,4 +1,5 @@
 ﻿using AdminDesktop.Controls.General;
+using AdminDesktop.Controls.PageContent;
 using Avalonia;
 using Avalonia.Controls;
 
@@ -24,6 +25,6 @@ public partial class MainWindow : Window
 
     private void Show_Users(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        ContentArea.Content = new SearchBar();
+        ContentArea.Content = new UsersContent();
     }
 }

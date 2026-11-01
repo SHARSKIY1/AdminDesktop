@@ -43,7 +43,7 @@
                 <Button Classes="Selection" Content="Online" Click="Show_Online"/>
             </StackPanel>
         </Border>
-        <ContentControl Grid.Column="1" Grid.Row="1" Name="ContentArea"/>
+        <ContentControl Grid.Column="1" Grid.Row="1" Name="ContentArea" Margin="15"/>
     </Grid>
 </Window>
 
