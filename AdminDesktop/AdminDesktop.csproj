@@ -28,6 +28,9 @@
     <Compile Update="Controls\PageContent\OnlineContent.axaml.cs">
       <DependentUpon>OnlineContent.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\PageContent\CatalogContent.axaml.cs">
+      <DependentUpon>CatalogContent.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 	<ItemGroup>

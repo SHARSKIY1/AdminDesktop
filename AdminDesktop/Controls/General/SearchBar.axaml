@@ -2,9 +2,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1053" d:DesignHeight="36"
              x:Class="AdminDesktop.Controls.General.SearchBar">
-    <Border BorderBrush="#4B316C" BorderThickness="2" CornerRadius="11" Background="#5B627B">
-        <Image Source="avares://AdminDesktop/Images/SearchIcon.png" Width="36" Height="36" HorizontalAlignment="Left"/>
-    </Border>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="#5B627B"
+                BorderThickness="1"
+                BorderBrush="#4B316C"
+                CornerRadius="7"
+                Margin="0 0 10 0"
+                MinWidth="200">
+            <Image Source="/Images/SearchIcon.png" 
+                   Width="20" 
+                   Height="20" 
+                   Margin="8"
+                   HorizontalAlignment="Left"/>
+        </Border>
+
+        <Border Grid.Column="1"
+                Background="#5B627B"
+                BorderThickness="1"
+                BorderBrush="#4B316C"
+                CornerRadius="7">
+            <Image Source="/Images/FilterIcon.png" Width="20" Height="20" Margin="8"/>
+        </Border>
+    </Grid>
 </UserControl>

@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="AdminDesktop.Controls.General.UserCard">
+    <StackPanel Orientation="Horizontal"
+                Background="#5B627B">
+        <Image Source="/Images/user1.png" 
+                Width="70"
+                Margin="5"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Guuts" FontSize="16" Foreground="White"/>
+            <TextBlock Text="Дата регистрации: 01.01.1999" FontSize="14" Foreground="LightGray"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

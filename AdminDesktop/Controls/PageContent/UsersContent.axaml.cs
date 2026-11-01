@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace AdminDesktop.Controls.PageContent
 {
-    public partial class UsersContent : UserControl
+    public partial class CatalogContent : UserControl
     {
-        public UsersContent()
+        public CatalogContent()
         {
             InitializeComponent();
         }
