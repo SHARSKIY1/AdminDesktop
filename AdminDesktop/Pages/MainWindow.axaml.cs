@@ -25,6 +25,11 @@ public partial class MainWindow : Window
 
     private void Show_Users(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        ContentArea.Content = new UsersContent();
+        ContentArea.Content = new UserCatalog();
+    }
+
+    private void Catalog_Show(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentArea.Content = new GameCatalog();
     }
 }

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:general="using:AdminDesktop.Controls.General"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AdminDesktop.Controls.PageContent.UsersContent">
+             x:Class="AdminDesktop.Controls.PageContent.GameCatalog">
 
     <Grid Background="#242C38">
         <Grid.ColumnDefinitions>

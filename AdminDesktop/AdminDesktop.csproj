@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\PageContent\UserCatalog.axaml.cs">
+      <DependentUpon>UserCatalog.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Controls\PageContent\OnlineContent.axaml.cs">
       <DependentUpon>OnlineContent.axaml</DependentUpon>
     </Compile>

@@ -36,7 +36,7 @@
         <Border Grid.Row="1" BorderBrush="#4B316C" BorderThickness="0,0,2,0">
             <StackPanel Background="#5B627B" Grid.Row="1">
                 <Button Classes="Selection" Content="Users" Click="Show_Users"/>
-                <Button Classes="Selection" Content="Catalog"/>
+                <Button Classes="Selection" Content="Catalog" Click="Catalog_Show"/>
                 <Button Classes="Selection" Content="Statistic"/>
                 <Button Classes="Selection" Content="Online" Click="Show_Online"/>
             </StackPanel>

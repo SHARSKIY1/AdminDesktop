@@ -4,7 +4,7 @@
              xmlns:general="using:AdminDesktop.Controls.General"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1700" d:DesignHeight="952"
-             x:Class="AdminDesktop.Controls.PageContent.CatalogContent"
+             x:Class="AdminDesktop.Controls.PageContent.UserCatalog"
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,24 +15,12 @@
             <StackPanel Margin="16" Spacing="10">
                 <general:SearchBar VerticalAlignment="Top" Height="36" />
                 <StackPanel Spacing="10" Background="#5B627B">
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
-                    <general:GameCard/>
+                    
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Column="1">
-            <general:Add_Edit_ControlBar/>
+            
         </StackPanel>
     </Grid>
 </UserControl>
