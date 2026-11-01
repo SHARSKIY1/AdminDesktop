@@ -66,7 +66,9 @@
                     </Grid>
                 </Border>
                 <TextBlock Text="CauseDescription" Classes="TextStyle" FontSize="24" Margin="10"/>
-                <TextBox Classes="TextBoxStyle"/>
+                <TextBox Classes="TextBoxStyle" AcceptsReturn="True" TextWrapping="Wrap" Height="460"/>
+                <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
             </StackPanel>
         </Border>
     </Grid>
