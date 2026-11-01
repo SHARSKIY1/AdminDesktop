@@ -8,19 +8,86 @@
              >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1100"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        
         <ScrollViewer>
-            <StackPanel Margin="16" Spacing="10">
+            <StackPanel Margin="0 0 10 0" Spacing="10">
                 <general:SearchBar VerticalAlignment="Top" Height="36" />
                 <StackPanel Spacing="10" Background="#5B627B">
-                    
+                    <general:UserCard/>
+                    <general:UserCard/>
+                    <general:UserCard/>
+                    <general:UserCard/>
+                    <general:UserCard/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel Grid.Column="1">
-            
-        </StackPanel>
+
+        <ScrollViewer Grid.Column="1">
+            <Grid Background="#5B627B">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="#4B316C" 
+                        BorderThickness="2">
+                    <StackPanel>
+                        <Border BorderBrush="#4B316C" BorderThickness="0,0,0,2" Height="52">
+                            <TextBlock Text="Edit" Classes="TextStyle" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                        </Border>
+
+                        <TextBlock Text="Nickname" Classes="TextStyle" Margin="10" FontSize="24"/>
+                        <TextBox Classes="TextBoxStyle"/>
+                        <TextBlock Text="Status" Classes="TextStyle" Margin="10" FontSize="24"/>
+                        <TextBox Classes="TextBoxStyle"/>
+                        <TextBlock Text="Icon" Classes="TextStyle" Margin="10" FontSize="24"/>
+                        <TextBox Classes="TextBoxStyle"/>
+                        <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="OpenFolder"/>
+                        <Image Source="/Images/user1.png" Height="270" Width="270" Margin="10"/>
+
+                        <Button Classes="MenuButtonStyle" Background="#D6AB00" Content="Edit" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#4B316C" 
+                        BorderThickness="2"
+                        Grid.Column="1">
+                    <StackPanel>
+                        <Border BorderBrush="#4B316C" BorderThickness="0,0,0,2" Height="52">
+                            <TextBlock Text="Delete" Classes="TextStyle" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                        </Border>
+
+                        <TextBlock Text="Cause" Classes="TextStyle" Margin="10,10,0,0" FontSize="24"/>
+                        <Border BorderBrush="#4B316C" BorderThickness="2" Margin="10" Background="#242C38" CornerRadius="10">
+                            <StackPanel>
+                                <RadioButton Content="Cheating"
+                                             Foreground="White"
+                                             GroupName="Cause"/>
+                                <RadioButton Content="Unacceptable behavior"
+                                             Foreground="White"
+                                             GroupName="Cause"/>
+                                <RadioButton Content="Other"
+                                             Foreground="White"
+                                             GroupName="Cause"/>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Text="CauseDescription" 
+                                   Classes="TextStyle" 
+                                   FontSize="24" 
+                                   Margin="10"/>
+                        <TextBox Classes="TextBoxStyle" 
+                                 AcceptsReturn="True" 
+                                 TextWrapping="Wrap" 
+                                 Margin="10"/>
+                        <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
