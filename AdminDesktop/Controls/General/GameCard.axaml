@@ -11,7 +11,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Image Source="avares://AdminDesktop/Images/GameIcon.png" HorizontalAlignment="Left" Grid.RowSpan="3"/>
-        <TextBlock Text="Liona" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,15,0,0" Height="29"/>
-        <TextBlock Text="Liona" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,15,0,0" Height="29"/>
+        <TextBlock Text="Liona" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,15,0,0" Height="29" FontSize="24"/>
+        <TextBlock Text="Tags: RPG, Sandbox" FontFamily="fonts:Inter#Inter" FontWeight="SemiBold" Foreground="White" Margin="87,60,0,0" Height="29" FontSize="24"/>
     </Grid>
 </UserControl>
