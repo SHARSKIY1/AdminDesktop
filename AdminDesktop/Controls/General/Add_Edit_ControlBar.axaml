@@ -4,14 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="580" d:DesignHeight="952"
              x:Class="AdminDesktop.Controls.General.Add_Edit_ControlBar">
-    <Grid>
+    <Grid Background="#5B627B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock Text="Add/Edit" Classes="TextStyle"/>
-
-        </StackPanel>
+        <Border BorderBrush="#4B316C" BorderThickness="2">
+            <StackPanel>
+                <Border BorderBrush="#4B316C" BorderThickness="0,0,0,2" Height="52">
+                    <TextBlock Text="Add/Edit" Classes="TextStyle" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                </Border>
+                <TextBlock Text="Name" Classes="TextStyle" Margin="10" FontSize="24"/>
+                <TextBox Classes="TextBoxStyle"/>
+                <TextBlock Text="Tags" Classes="TextStyle" Margin="10" FontSize="24"/>
+                <TextBox Classes="TextBoxStyle"/>
+                <TextBlock Text="Price" Classes="TextStyle" Margin="10" FontSize="24"/>
+                <TextBox Classes="TextBoxStyle"/>
+                <TextBlock Text="ImageIcon" Classes="TextStyle" Margin="10" FontSize="24"/>
+                <TextBox Classes="TextBoxStyle"/>
+                <Button></Button>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#4B316C" BorderThickness="2" Grid.Column="1">
+            <StackPanel>
+                <Border BorderBrush="#4B316C" BorderThickness="0,0,0,2" Height="52">
+                    <TextBlock Text="Control" Classes="TextStyle" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                </Border>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

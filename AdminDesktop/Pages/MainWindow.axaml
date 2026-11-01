@@ -23,7 +23,7 @@
                     Margin="30,0,0,0" 
                     VerticalAlignment="Center">
                     <Ellipse.Fill>
-                        <ImageBrush Source="C:\Users\Алексей\Desktop\MySite\front\mysite\app\User.png" Stretch="UniformToFill"/>
+                        <ImageBrush Source="avares://AdminDesktop/Images/User.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Text="Admin" 

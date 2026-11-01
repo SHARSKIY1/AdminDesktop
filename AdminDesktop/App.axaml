@@ -8,5 +8,7 @@
         <FluentTheme />
         <StyleInclude Source="/Styles/ButtonStyle.axaml"/>
         <StyleInclude Source="/Styles/TextStyle.axaml"/>
+        <StyleInclude Source="/Styles/TextBoxStyle.axaml"/>
+        <StyleInclude Source="/Styles/MenuButton.axaml"/>
     </Application.Styles>
 </Application>
