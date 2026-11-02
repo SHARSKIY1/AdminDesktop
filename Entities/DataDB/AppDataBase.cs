@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DataDB;
 
@@ -6,7 +8,6 @@ public class AppDataBase : DbContext
 {
     public AppDataBase(DbContextOptions<AppDataBase> options) : base(options)
     {
-
     }
 
     public DbSet<User> Users { get; set; }

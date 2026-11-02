@@ -1,16 +1,48 @@
+
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             x:Class="AdminDesktop.Controls.General.UserCard">
-    <StackPanel Orientation="Horizontal"
-                Background="#5B627B">
-        <Image Source="/Images/user1.png" 
-                Width="70"
-                Margin="5"/>
-        <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="Guuts" FontSize="16" Foreground="White"/>
-            <TextBlock Text="Дата регистрации: 01.01.1999" FontSize="14" Foreground="LightGray"/>
+             xmlns:entities="using:Entities"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="80"
+             x:Class="AdminDesktop.Controls.General.UserCard"
+             x:DataType="entities:User"
+             Height="80"
+             HorizontalAlignment="Stretch">
+
+    <Grid Background="#5B627B"
+          ColumnDefinitions="*,Auto"
+          Margin="0,0,0,2">
+
+        <StackPanel Margin="16,8" Spacing="4">
+
+            <TextBlock
+                Text="{Binding Login}"
+                Classes="TextStyle"
+                FontSize="22"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="10">
+
+                <TextBlock
+                    Text="{Binding UserId, StringFormat='ID: {0}'}"
+                    Classes="TextStyle"/>
+
+                <TextBlock
+                    Text="{Binding Role, StringFormat='Role: {0}'}"
+                    Classes="TextStyle"/>
+
+            </StackPanel>
+
         </StackPanel>
-    </StackPanel>
+
+        <TextBlock
+            Grid.Column="1"
+            Text="{Binding IsOnline, StringFormat='Is Online: {0}'}"
+            Classes="TextStyle"
+            VerticalAlignment="Center"
+            Margin="10"/>
+
+    </Grid>
 </UserControl>
