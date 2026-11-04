@@ -47,8 +47,6 @@
 
                         <TextBlock Text="Nickname" Classes="TextStyle" Margin="10" FontSize="24"/>
                         <TextBox Classes="TextBoxStyle"/>
-                        <TextBlock Text="Status" Classes="TextStyle" Margin="10" FontSize="24"/>
-                        <TextBox Classes="TextBoxStyle"/>
                         <TextBlock Text="Icon" Classes="TextStyle" Margin="10" FontSize="24"/>
                         <TextBox Classes="TextBoxStyle"/>
                         <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="OpenFolder"/>
