@@ -29,7 +29,9 @@ public partial class StatisticsContent : UserControl
 
     private readonly int[] _newUsers = new int[12];
     private readonly int[] _totalUsers = new int[12];
+    private readonly decimal[] _monthlyProfit = new decimal[12];
     private List<(string Name, int Count)> _tags = new();
+    private List<(string Name, int Count)> _paymentMethods = new();
     private string? _dataNotice;
 
     public StatisticsContent()
@@ -60,8 +62,38 @@ public partial class StatisticsContent : UserControl
                 .AsNoTracking()
                 .Select(game => game.Tags)
                 .ToListAsync(timeout.Token);
+            _paymentMethods = await db.Payments
+                .AsNoTracking()
+                .GroupBy(payment => payment.PaymentMethod)
+                .Select(group => new
+                {
+                    Name = group.Key,
+                    Count = group.Count()
+                })
+                .ToListAsync(timeout.Token)
+                .ContinueWith(task => task.Result
+                    .Select(item => (item.Name, item.Count))
+                    .ToList(), timeout.Token);
 
             var currentYear = DateTime.Now.Year;
+
+            var paymentsByMonth = await db.Payments
+                .AsNoTracking()
+                .Where(payment => payment.PaymentDate.Year == currentYear &&
+                                  payment.Status == "Completed")
+                .GroupBy(payment => payment.PaymentDate.Month)
+                .Select(group => new
+                {
+                    Month = group.Key,
+                    Amount = group.Sum(payment => payment.Amount)
+                })
+                .ToListAsync(timeout.Token);
+
+            foreach (var payment in paymentsByMonth)
+            {
+                _monthlyProfit[payment.Month - 1] = payment.Amount;
+            }
+
             for (var month = 0; month < 12; month++)
             {
                 _newUsers[month] = registrations.Count(date =>
@@ -121,10 +153,10 @@ public partial class StatisticsContent : UserControl
 
         var plot = new Rect(10, 8, Math.Max(100, width - 20), Math.Max(75, height - 88));
         AddRectangle(canvas, plot, Brushes.White);
-        var values = new[] { 233, 999, 100 };
-        var names = new[] { "Card", "SBP", "MoneyStore" };
+        var values = _paymentMethods.Select(item => item.Count).ToArray();
+        var names = _paymentMethods.Select(item => item.Name).ToArray();
         var colors = new[] { "#7F3FCD", "#A00000", "#267A00" };
-        var max = 1100d;
+        var max = Math.Max(1, values.DefaultIfEmpty(0).Max());
         var barWidth = Math.Min(34, plot.Width / 7);
 
         for (var index = 0; index < values.Length; index++)
@@ -137,10 +169,6 @@ public partial class StatisticsContent : UserControl
             AddRectangle(canvas, new Rect(plot.X + 16, legendY, 15, 15), Brush(colors[index]));
             AddText(canvas, names[index], plot.X + 38, legendY - 1, Math.Max(65, plot.Width - 48), Brushes.White, 12);
         }
-        var paymentNotice = string.IsNullOrWhiteSpace(_dataNotice)
-            ? "Демонстрационные данные"
-            : "Демо-данные; " + _dataNotice;
-        AddText(canvas, paymentNotice, 10, Math.Max(0, height - 17), width - 20, Brush("#F0C674"), 9);
     }
 
     private void DrawUsersChart()
@@ -220,23 +248,43 @@ public partial class StatisticsContent : UserControl
 
         var chart = new Rect(8, 8, Math.Max(100, width - 16), Math.Max(100, height - 48));
         AddRectangle(canvas, chart, Brushes.White);
-        var profit = new[] { 357156, 390082, 424912, 433822, 518965, 525043, 590140, 562413, 615655 };
-        var sales = new[] { 36400, 43900, 48967, 51800, 74680, 81120, 96560, 98814, 115400 };
-        DrawGrid(canvas, chart, 4);
-        var profitPoints = BuildPoints(chart, profit, 650000, 12);
-        var salesPoints = BuildPoints(chart, sales, 650000, 12);
-        DrawPolyline(canvas, profitPoints, Brush("#F0443A"), 2.5);
-        DrawPolyline(canvas, salesPoints, Brush("#4387F5"), 2.5);
 
-        for (var index = 0; index < profit.Length; index++)
+        var maxProfit = Math.Max(1, (double)_monthlyProfit.Max());
+
+        DrawGrid(canvas, chart, 4);
+
+        var profitPoints = BuildPoints(
+            chart,
+            _monthlyProfit.Select(value => (int)value).ToArray(),
+            maxProfit,
+            12);
+
+        DrawPolyline(canvas, profitPoints, Brush("#F0443A"), 2.5);
+
+        for (var index = 0; index < _monthlyProfit.Length; index++)
         {
             AddMarker(canvas, profitPoints[index], Brush("#F0443A"), 4);
-            AddMarker(canvas, salesPoints[index], Brush("#4387F5"), 4);
-            AddText(canvas, profit[index].ToString("N0"), profitPoints[index].X - 27, profitPoints[index].Y - 18, 55, Brush("#F0443A"), 8, false, TextAlignment.Center);
-            AddText(canvas, sales[index].ToString("N0"), salesPoints[index].X - 25, salesPoints[index].Y - 18, 50, Brush("#4387F5"), 8, false, TextAlignment.Center);
+
+            AddText(canvas, _monthlyProfit[index].ToString("N0"),
+                profitPoints[index].X - 27,
+                profitPoints[index].Y - 18,
+                55,
+                Brush("#F0443A"),
+                8,
+                false,
+                TextAlignment.Center);
+
+            AddText(canvas, MonthNames[index],
+                profitPoints[index].X - 14,
+                chart.Bottom + 3,
+                28,
+                Brushes.White,
+                9,
+                false,
+                TextAlignment.Center);
         }
-        AddText(canvas, "Янв     Фев     Мар     Апр     Май     Июн     Июл     Авг     Сен", chart.X + 5, chart.Bottom + 3, chart.Width - 10, Brushes.White, 9);
-        AddText(canvas, "Демонстрационные данные", 10, Math.Max(0, height - 16), width - 20, Brush("#F0C674"), 9);
+
+        AddNotice(canvas, width, height);
     }
 
     private static List<Point> BuildPoints(Rect area, IReadOnlyList<int> values, double maxValue, double topPadding)

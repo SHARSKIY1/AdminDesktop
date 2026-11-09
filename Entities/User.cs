@@ -16,4 +16,5 @@ public class User
     public DateTime RegistrationDate { get; set; } = new DateTime(2026, 9, 1);
     public bool IsOnline { get; set; } = true;
     public string IconPath { get; set; } = string.Empty;
+    public List<Payment> Payments { get; set; } = new();
 }

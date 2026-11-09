@@ -12,4 +12,6 @@ public class AppDataBase : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Game> Games { get; set; }
+    public DbSet<Payment> Payments { get; set; }
+    public DbSet<PaymentItem> PaymentItems { get; set; }
 }

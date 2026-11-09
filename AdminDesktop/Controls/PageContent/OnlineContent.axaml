@@ -15,6 +15,25 @@
                     Classes="TextStyle"
                     VerticalAlignment="Center"
                     Margin="20,0,0,0"/>
+                <TextBlock 
+                    x:Name="TotalUsers"
+                    FontSize="20" 
+                    Classes="TextStyle"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="50,40,0,0">
+                <Ellipse Fill="Green" Width="15" Height="15"/>
+                <TextBlock 
+                    Text="Всего активных пользователей: "
+                    FontSize="20" 
+                    Classes="TextStyle"
+                    VerticalAlignment="Center"
+                    Margin="20,0,0,0"/>
+                <TextBlock 
+                    x:Name="ActiveUsers"
+                    FontSize="20" 
+                    Classes="TextStyle"
+                    VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
     </Grid>

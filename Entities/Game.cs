@@ -13,5 +13,6 @@ public class Game
     public string IconPath { get; set; } = string.Empty;
     public string ApkPath { get; set; } = string.Empty;
     public string TagsText => string.Join(", ", Tags);
+    public List<PaymentItem> PaymentItems { get; set; } = new();
 }
 
