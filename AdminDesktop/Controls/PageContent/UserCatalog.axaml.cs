@@ -5,8 +5,10 @@ using Avalonia.Media.Imaging;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace AdminDesktop.Controls.PageContent;
 public partial class UserCatalog : UserControl
 {
     private User? selectedUser;
+    private List<User> allUsers = new();
     public ObservableCollection<User> Users { get; set; } = new();
 
     public UserCatalog()
@@ -23,6 +26,7 @@ public partial class UserCatalog : UserControl
         InitializeComponent();
         DataContext = this;
         _ = LoadUsersAsync();
+        SearchBar.SearchTextChanged += SearchUsers;
     }
 
     private async Task LoadUsersAsync()
@@ -36,7 +40,11 @@ public partial class UserCatalog : UserControl
                 .AsNoTracking()
                 .ToListAsync(timeout.Token);
 
-            foreach (var user in users)
+            allUsers = users;
+
+            Users.Clear();
+
+            foreach (var user in allUsers)
                 Users.Add(user);
         }
         catch
@@ -99,6 +107,11 @@ public partial class UserCatalog : UserControl
                 Users[index] = user;
 
             selectedUser = user;
+
+            var allIndex = allUsers.FindIndex(u => u.UserId == user.UserId);
+
+            if (allIndex >= 0)
+                allUsers[allIndex] = user;
         }
         catch
         {
@@ -185,6 +198,9 @@ public partial class UserCatalog : UserControl
             await File.WriteAllTextAsync(filePath, document, Encoding.UTF8);
 
             Users.Remove(deletedUser);
+
+            allUsers.RemoveAll(u => u.UserId == deletedUser.UserId);
+
             selectedUser = null;
 
             NickNameTextBox.Text = string.Empty;
@@ -200,5 +216,16 @@ public partial class UserCatalog : UserControl
             await MessageBoxService.ShowErrorAsync(
                 "Не удалось удалить пользователя. Проверьте подключение к БД и доступ к файлам.");
         }
+    }
+
+    private void SearchUsers(string searchText)
+    {
+        Users.Clear();
+
+        var filteredUsers = allUsers.Where(user =>
+            user.Login.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+
+        foreach (var user in filteredUsers)
+            Users.Add(user);
     }
 }

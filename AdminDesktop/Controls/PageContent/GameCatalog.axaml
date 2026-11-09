@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <ScrollViewer>
             <StackPanel Margin="16" Spacing="10">
-                <general:SearchBar VerticalAlignment="Top" Height="36" />
+                <general:SearchBar VerticalAlignment="Top" Height="36" x:Name="SearchBar"/>
                 <StackPanel Spacing="10" Background="#5B627B">
                     <ItemsControl ItemsSource="{Binding Games}">
                         <ItemsControl.ItemTemplate>

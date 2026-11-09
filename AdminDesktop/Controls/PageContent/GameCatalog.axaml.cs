@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace AdminDesktop.Controls.PageContent
     public partial class GameCatalog : UserControl
     {
         public ObservableCollection<Game> Games { get; set; } = new();
+        private List<Game> allGames = new();
 
         public GameCatalog()
         {
@@ -22,6 +24,7 @@ namespace AdminDesktop.Controls.PageContent
             EditDelControl.AddRequested = AddGameAsync;
             EditDelControl.EditRequested = EditGameAsync;
             EditDelControl.DeleteRequested = DeleteGameAsync;
+            SearchBar.SearchTextChanged += SearchGames;
             _ = LoadGamesAsync();
         }
 
@@ -35,6 +38,8 @@ namespace AdminDesktop.Controls.PageContent
                 var games = await db.Games
                     .AsNoTracking()
                     .ToListAsync(timeout.Token);
+
+                allGames = games;
 
                 foreach (var game in games)
                     Games.Add(game);
@@ -175,6 +180,17 @@ namespace AdminDesktop.Controls.PageContent
                 await MessageBoxService.ShowErrorAsync(
                     $"Не удалось удалить игру: {ex.Message}");
             }
+        }
+
+        private void SearchGames(string searchText)
+        {
+            Games.Clear();
+
+            var filteredGames = allGames.Where(game =>
+                game.Name.Contains(searchText.Trim(), StringComparison.OrdinalIgnoreCase));
+
+            foreach (var game in filteredGames)
+                Games.Add(game);
         }
     }
 }

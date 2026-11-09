@@ -4,24 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="AdminDesktop.Controls.General.SearchBar">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
+    <Border Background="#5B627B"
+            BorderThickness="1"
+            BorderBrush="#4B316C"
+            CornerRadius="7"
+            MinWidth="200">
 
-        <Border Grid.Column="0"
-                Background="#5B627B"
-                BorderThickness="1"
-                BorderBrush="#4B316C"
-                CornerRadius="7"
-                Margin="0 0 10 0"
-                MinWidth="200">
-            <Image Source="/Images/SearchIcon.png" 
-                   Width="20" 
-                   Height="20" 
+        <Grid ColumnDefinitions="Auto,*">
+
+            <Image Source="/Images/SearchIcon.png"
+                   Grid.Column="0"
+                   Width="20"
+                   Height="20"
                    Margin="8"
-                   HorizontalAlignment="Left"/>
-        </Border>
-    </Grid>
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="SearchTextBox"
+                     Grid.Column="1"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="White"
+                     Watermark="Searching"
+                     VerticalContentAlignment="Center"
+                     Margin="0,0,8,0"/>
+        </Grid>
+    </Border>
 </UserControl>
