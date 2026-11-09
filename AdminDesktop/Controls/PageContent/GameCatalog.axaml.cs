@@ -41,14 +41,22 @@ namespace AdminDesktop.Controls.PageContent
 
                 allGames = games;
 
+                Games.Clear();
+
                 foreach (var game in games)
                     Games.Add(game);
+            }
+            catch (Exception ex) when (DatabaseErrorHelper.IsConnectionError(ex))
+            {
+                Games.Clear();
+                await MessageBoxService.ShowErrorAsync(
+                    "Не удалось подключиться к БД. Проверьте подключение к PostgreSQL.");
             }
             catch
             {
                 Games.Clear();
                 await MessageBoxService.ShowErrorAsync(
-                    $"Не удалось загрузить каталог игр. Проверьте подключение к PostgreSQL. ");
+                    "Не удалось загрузить каталог игр.");
             }
         }
 
@@ -75,7 +83,13 @@ namespace AdminDesktop.Controls.PageContent
                 await db.SaveChangesAsync();
 
                 Games.Add(game);
+                allGames.Add(game);
                 EditDelControl.ClearFields();
+            }
+            catch (Exception ex) when (DatabaseErrorHelper.IsConnectionError(ex))
+            {
+                await MessageBoxService.ShowErrorAsync(
+                    "Не удалось подключиться к БД. Проверьте подключение к PostgreSQL.");
             }
             catch
             {
@@ -125,7 +139,17 @@ namespace AdminDesktop.Controls.PageContent
                     }
                 }
 
+                var allIndex = allGames.FindIndex(g => g.GameId == dbGame.GameId);
+
+                if (allIndex >= 0)
+                    allGames[allIndex] = dbGame;
+
                 EditDelControl.SetGame(dbGame);
+            }
+            catch (Exception ex) when (DatabaseErrorHelper.IsConnectionError(ex))
+            {
+                await MessageBoxService.ShowErrorAsync(
+                    "Не удалось подключиться к БД. Проверьте подключение к PostgreSQL.");
             }
             catch
             {
@@ -168,6 +192,8 @@ namespace AdminDesktop.Controls.PageContent
                 db.Games.Remove(dbGame);
                 await db.SaveChangesAsync();
 
+                allGames.RemoveAll(g => g.GameId == game.GameId);
+
                 var selected = Games.FirstOrDefault(g => g.GameId == game.GameId);
 
                 if (selected != null)
@@ -175,10 +201,15 @@ namespace AdminDesktop.Controls.PageContent
 
                 EditDelControl.ClearFields();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (DatabaseErrorHelper.IsConnectionError(ex))
             {
                 await MessageBoxService.ShowErrorAsync(
-                    $"Не удалось удалить игру: {ex.Message}");
+                    "Не удалось подключиться к БД. Проверьте подключение к PostgreSQL.");
+            }
+            catch
+            {
+                await MessageBoxService.ShowErrorAsync(
+                    "Не удалось удалить игру. Проверьте доступ к БД и файлам.");
             }
         }
 

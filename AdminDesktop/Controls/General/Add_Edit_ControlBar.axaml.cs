@@ -6,6 +6,8 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Linq;
+using Avalonia.Platform.Storage;
+using Avalonia.Media.Imaging;
 
 namespace AdminDesktop.Controls.General
 {
@@ -158,6 +160,36 @@ namespace AdminDesktop.Controls.General
 
             if (DeleteRequested != null)
                 await DeleteRequested.Invoke(selectedGame, reasons, description);
+        }
+
+        private async void OpenFolder(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var topLevel = TopLevel.GetTopLevel(this);
+
+            if (topLevel == null)
+                return;
+
+            var files = await topLevel.StorageProvider.OpenFilePickerAsync(
+                new FilePickerOpenOptions
+                {
+                    Title = "Выберите PNG-иконку игры",
+                    AllowMultiple = false,
+                    FileTypeFilter = new[]
+                    {
+                new FilePickerFileType("PNG изображения")
+                {
+                    Patterns = new[] { "*.png" }
+                }
+                    }
+                });
+
+            if (files.Count == 0)
+                return;
+
+            var path = files[0].Path.LocalPath;
+
+            ImageIconTextBox.Text = path;
+            GameIconImage.Source = new Bitmap(path);
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System;
+using System.Threading.Tasks;
 
 namespace AdminDesktop;
 
@@ -49,5 +50,18 @@ class Program
             .Options;
 
         return new AppDataBase(options);
+    }
+
+    public static async Task<bool> CheckDatabaseConnectionAsync()
+    {
+        try
+        {
+            await using var db = CreateDbContext();
+            return await db.Database.CanConnectAsync();
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

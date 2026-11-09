@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia.Platform.Storage;
 
 namespace AdminDesktop.Controls.PageContent;
 
@@ -227,5 +228,32 @@ public partial class UserCatalog : UserControl
 
         foreach (var user in filteredUsers)
             Users.Add(user);
+    }
+
+    private async void OpenFolder(object? sender, RoutedEventArgs e)
+    {
+        var topLevel = TopLevel.GetTopLevel(this);
+
+        var files = await topLevel!.StorageProvider.OpenFilePickerAsync(
+            new FilePickerOpenOptions
+            {
+                Title = "Выберите PNG-изображение",
+                AllowMultiple = false,
+                FileTypeFilter = new[]
+                {
+                new FilePickerFileType("PNG изображения")
+                {
+                    Patterns = new[] { "*.png" }
+                }
+                }
+            });
+
+        if (files.Count == 0)
+            return;
+
+        var path = files[0].Path.LocalPath;
+
+        IconPathTextBox.Text = path;
+        UserIconImage.Source = new Bitmap(path);
     }
 }
