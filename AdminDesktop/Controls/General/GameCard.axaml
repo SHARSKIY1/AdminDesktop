@@ -9,7 +9,7 @@
              xmlns:entities="using:Entities"
              x:DataType="entities:Game">
 
-    <Grid Background="#5B627B">
+    <Grid Background="#5B627B" PointerPressed="SelectGame">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

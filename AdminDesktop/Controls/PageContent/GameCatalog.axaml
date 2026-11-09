@@ -21,7 +21,7 @@
                     <ItemsControl ItemsSource="{Binding Games}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="entities:Game">
-                                <general:GameCard/>
+                                <general:GameCard GameSelected="GameCard_GameSelected"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -29,7 +29,7 @@
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1">
-            <general:Add_Edit_ControlBar Grid.Column="1"/>
+            <general:Add_Edit_ControlBar Grid.Column="1" x:Name="EditDelControl"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

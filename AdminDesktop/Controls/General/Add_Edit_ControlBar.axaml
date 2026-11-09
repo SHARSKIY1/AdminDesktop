@@ -15,20 +15,20 @@
                     <TextBlock Text="Add/Edit" Classes="TextStyle" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
                 </Border>
                 <TextBlock Text="Name" Classes="TextStyle" Margin="10" FontSize="24"/>
-                <TextBox Classes="TextBoxStyle"/>
+                <TextBox Classes="TextBoxStyle" x:Name="NameTextBox"/>
                 <TextBlock Text="Tags" Classes="TextStyle" Margin="10" FontSize="24"/>
-                <TextBox Classes="TextBoxStyle"/>
+                <TextBox Classes="TextBoxStyle" x:Name="TagsTextBox"/>
                 <TextBlock Text="Price" Classes="TextStyle" Margin="10" FontSize="24"/>
-                <TextBox Classes="TextBoxStyle"/>
+                <TextBox Classes="TextBoxStyle" x:Name="PriceTextBox"/>
                 <TextBlock Text="ImageIcon" Classes="TextStyle" Margin="10" FontSize="24"/>
-                <TextBox Classes="TextBoxStyle"/>
+                <TextBox Classes="TextBoxStyle" x:Name="ImageIconTextBox"/>
                 <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="OpenFolder"/>
-                <Image Source="avares://AdminDesktop/Images/GameIcon.png" Height="270" Width="270" Margin="0,5,0,0"/>
+                <Image Source="avares://AdminDesktop/Images/GameIcon.png" Height="270" Width="270" Margin="0,5,0,0" x:Name="GameIconImage"/>
                 <TextBlock Text="APK-File" Classes="TextStyle" FontSize="24" Margin="10"/>
-                <TextBox Classes="TextBoxStyle"/>
-                <Button Classes="MenuButtonStyle" Background="#D6AB00" Content="Add" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="Edit" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBox Classes="TextBoxStyle" x:Name="ApkFileTextBox"/>
+                <Button Classes="MenuButtonStyle" Background="#D6AB00" Content="Add" HorizontalAlignment="Center" Margin="0,0,0,10" Click="AddGame"/>
+                <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="Edit" HorizontalAlignment="Center" Margin="0,0,0,10" Click="EditGame"/>
+                <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10" Click="ResetGame"/>
             </StackPanel>
         </Border>
         <Border BorderBrush="#4B316C" BorderThickness="2" Grid.Column="1">
@@ -51,24 +51,24 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" x:Name="Technical"/>
                         <TextBlock Text="Technical" Classes="TextStyle" Grid.Column="1" FontSize="20"/>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="1"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="1" x:Name="Fraud"/>
                         <TextBlock Text="Fraud" Classes="TextStyle" Grid.Row="1" Grid.Column="1" FontSize="20"/>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="2"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="2" x:Name="SecurityScam"/>
                         <TextBlock Text="SecurityScam" Classes="TextStyle" Grid.Row="2" Grid.Column="1" FontSize="20"/>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="3"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="3" x:Name="Unreabiality"/>
                         <TextBlock Text="Unreabiality" Classes="TextStyle" Grid.Row="3" Grid.Column="1" FontSize="20"/>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="4"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="4" x:Name="Vulnerability"/>
                         <TextBlock Text="Vulnerability" Classes="TextStyle" Grid.Row="4" Grid.Column="1" FontSize="20"/>
-                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="5"/>
+                        <ToggleButton Classes="ToggleButtonStyle" Margin="10" Grid.Row="5" x:Name="Other"/>
                         <TextBlock Text="Other" Classes="TextStyle" Grid.Row="5" Grid.Column="1" FontSize="20"/>
                     </Grid>
                 </Border>
                 <TextBlock Text="CauseDescription" Classes="TextStyle" FontSize="24" Margin="10"/>
-                <TextBox Classes="TextBoxStyle" AcceptsReturn="True" TextWrapping="Wrap" Height="460"/>
-                <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBox Classes="TextBoxStyle" AcceptsReturn="True" TextWrapping="Wrap" Height="460" x:Name="DelDescription"/>
+                <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10" Click="DeleteGame"/>
+                <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10" Click="ResetGame"/>
             </StackPanel>
         </Border>
     </Grid>

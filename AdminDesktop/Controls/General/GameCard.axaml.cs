@@ -4,11 +4,15 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Entities;
 using System.IO;
+using Avalonia.Input;
+using System;
 
 namespace AdminDesktop.Controls.General
 {
     public partial class GameCard : UserControl
     {
+        public event Action<Game>? GameSelected;
+
         public GameCard()
         {
             InitializeComponent();
@@ -25,6 +29,14 @@ namespace AdminDesktop.Controls.General
                     IconImage.Source = null;
                 }
             };
+        }
+
+        private void SelectGame(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+        {
+            if (DataContext is Game game)
+            {
+                GameSelected?.Invoke(game);
+            }
         }
     }
 }

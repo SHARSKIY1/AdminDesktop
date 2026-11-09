@@ -23,13 +23,5 @@
                    Margin="8"
                    HorizontalAlignment="Left"/>
         </Border>
-
-        <Border Grid.Column="1"
-                Background="#5B627B"
-                BorderThickness="1"
-                BorderBrush="#4B316C"
-                CornerRadius="7">
-            <Image Source="/Images/FilterIcon.png" Width="20" Height="20" Margin="8"/>
-        </Border>
     </Grid>
 </UserControl>
