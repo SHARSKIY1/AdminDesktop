@@ -32,4 +32,9 @@ public partial class MainWindow : Window
     {
         ContentArea.Content = new GameCatalog();
     }
+
+    private void Show_Statistics(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentArea.Content = new StatisticsContent();
+    }
 }

@@ -41,6 +41,9 @@
     <Compile Update="Controls\PageContent\GameCatalog.axaml.cs">
       <DependentUpon>GameCatalog.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\PageContent\StatisticsContent.axaml.cs">
+      <DependentUpon>StatisticsContent.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 	<ItemGroup>
