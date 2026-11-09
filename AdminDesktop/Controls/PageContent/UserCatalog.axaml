@@ -24,7 +24,7 @@
                      <ItemsControl ItemsSource="{Binding Users}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="entities:User">
-                                <general:UserCard/>
+                                <general:UserCard UserSelected="UserCard_UserSelected"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -46,14 +46,14 @@
                         </Border>
 
                         <TextBlock Text="Nickname" Classes="TextStyle" Margin="10" FontSize="24"/>
-                        <TextBox Classes="TextBoxStyle"/>
+                        <TextBox Classes="TextBoxStyle" x:Name="NickNameTextBox"/>
                         <TextBlock Text="Icon" Classes="TextStyle" Margin="10" FontSize="24"/>
-                        <TextBox Classes="TextBoxStyle"/>
+                        <TextBox Classes="TextBoxStyle" x:Name="IconPathTextBox"/>
                         <Button Classes="MenuButtonStyle" Background="#7F3FCD" Content="OpenFolder"/>
-                        <Image Source="/Images/user1.png" Height="270" Width="270" Margin="10"/>
+                        <Image Source="/Images/user1.png" Height="270" Width="270" Margin="10" x:Name="UserIconImage"/>
 
-                        <Button Classes="MenuButtonStyle" Background="#D6AB00" Content="Edit" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <Button Classes="MenuButtonStyle" Background="#D6AB00" Content="Edit" HorizontalAlignment="Center" Margin="0,0,0,10" Click="Edit"/>
+                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10" Click="Reset"/>
                     </StackPanel>
                 </Border>
 
@@ -70,13 +70,13 @@
                             <StackPanel>
                                 <RadioButton Content="Cheating"
                                              Foreground="White"
-                                             GroupName="Cause"/>
+                                             GroupName="Cause" x:Name="CheatingRadioButton"/>
                                 <RadioButton Content="Unacceptable behavior"
                                              Foreground="White"
-                                             GroupName="Cause"/>
+                                             GroupName="Cause" x:Name="BehaviorRadioButton"/>
                                 <RadioButton Content="Other"
                                              Foreground="White"
-                                             GroupName="Cause"/>
+                                             GroupName="Cause" x:Name="OtherRadioButton"/>
                             </StackPanel>
                         </Border>
 
@@ -87,9 +87,10 @@
                         <TextBox Classes="TextBoxStyle" 
                                  AcceptsReturn="True" 
                                  TextWrapping="Wrap" 
-                                 Margin="10"/>
-                        <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                 Margin="10"
+                                 x:Name="CauseDescriptionTextBox"/>
+                        <Button Classes="MenuButtonStyle" Background="#8B0000" Content="Delete" HorizontalAlignment="Center" Margin="0,0,0,10" Click="Delete"/>
+                        <Button Classes="MenuButtonStyle" Background="#2A2A2A" Content="Reset" HorizontalAlignment="Center" Margin="0,0,0,10" Click="Reset"/>
                     </StackPanel>
                 </Border>
             </Grid>

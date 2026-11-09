@@ -6,8 +6,8 @@ using System.Text;
 public class Payment
 {
     public int PaymentId { get; set; }
-    public int UserId { get; set; }
-    public User User { get; set; } = null!;
+    public int? UserId { get; set; }
+    public User? User { get; set; }
     public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
     public string PaymentMethod { get; set; } = string.Empty;
     public string Status { get; set; } = "Pending";
