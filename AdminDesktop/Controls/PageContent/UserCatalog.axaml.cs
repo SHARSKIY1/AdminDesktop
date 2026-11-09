@@ -1,8 +1,10 @@
-
+using AdminDesktop.Controls.General;
 using Avalonia.Controls;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AdminDesktop.Controls.PageContent;
 
@@ -13,21 +15,29 @@ public partial class UserCatalog : UserControl
     public UserCatalog()
     {
         InitializeComponent();
-
         DataContext = this;
-
-        LoadUsers();
+        _ = LoadUsersAsync();
     }
 
-    private void LoadUsers()
+    private async Task LoadUsersAsync()
     {
-        using var db = Program.CreateDbContext();
-
-        var users = db.Users.ToList();
-
-        foreach (var user in users)
+        try
         {
-            Users.Add(user);
+            using var timeout = new CancellationTokenSource(
+                System.TimeSpan.FromSeconds(Program.DatabaseLoadingTimeoutSeconds));
+            await using var db = Program.CreateDbContext();
+            var users = await db.Users
+                .AsNoTracking()
+                .ToListAsync(timeout.Token);
+
+            foreach (var user in users)
+                Users.Add(user);
+        }
+        catch
+        {
+            Users.Clear();
+            await MessageBoxService.ShowErrorAsync(
+                $"Не удалось загрузить пользователей. Проверьте подключение к PostgreSQL.");
         }
     }
 }

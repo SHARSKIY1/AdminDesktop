@@ -2,10 +2,13 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
-using Entities;
+using AdminDesktop.Controls.General;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AdminDesktop.Controls.PageContent;
 
@@ -32,27 +35,39 @@ public partial class StatisticsContent : UserControl
     public StatisticsContent()
     {
         InitializeComponent();
-        LoadStatistics();
 
         PaymentCanvas.SizeChanged += (_, _) => DrawPaymentChart();
         UsersCanvas.SizeChanged += (_, _) => DrawUsersChart();
         TagsCanvas.SizeChanged += (_, _) => DrawTagsChart();
         ProfitCanvas.SizeChanged += (_, _) => DrawProfitChart();
+
+        _ = LoadStatisticsAsync();
     }
 
-    private void LoadStatistics()
+    private async Task LoadStatisticsAsync()
     {
         try
         {
-            using var db = Program.CreateDbContext();
-            var registrations = db.Users.Select(user => user.RegistrationDate).ToList();
-            var gameTags = db.Games.Select(game => game.Tags).ToList();
+            using var timeout = new CancellationTokenSource(
+                TimeSpan.FromSeconds(Program.DatabaseLoadingTimeoutSeconds));
+            await using var db = Program.CreateDbContext();
+
+            var registrations = await db.Users
+                .AsNoTracking()
+                .Select(user => user.RegistrationDate)
+                .ToListAsync(timeout.Token);
+            var gameTags = await db.Games
+                .AsNoTracking()
+                .Select(game => game.Tags)
+                .ToListAsync(timeout.Token);
 
             var currentYear = DateTime.Now.Year;
             for (var month = 0; month < 12; month++)
             {
-                _newUsers[month] = registrations.Count(date => date.Year == currentYear && date.Month == month + 1);
-                _totalUsers[month] = registrations.Count(date => date.Year < currentYear ||
+                _newUsers[month] = registrations.Count(date =>
+                    date.Year == currentYear && date.Month == month + 1);
+                _totalUsers[month] = registrations.Count(date =>
+                    date.Year < currentYear ||
                     (date.Year == currentYear && date.Month <= month + 1));
             }
 
@@ -64,19 +79,24 @@ public partial class StatisticsContent : UserControl
                 .OrderByDescending(item => item.Count)
                 .Take(7)
                 .ToList();
-
-            if (registrations.Count == 0)
-                _dataNotice = "В базе пока нет регистраций";
         }
-        catch (Exception exception)
+        catch
         {
             _dataNotice = "Нет соединения с БД. Показаны демонстрационные данные.";
             LoadFallbackData();
-            System.Diagnostics.Debug.WriteLine($"Statistics data loading failed: {exception.Message}");
+            _tags = new List<(string Name, int Count)> { ("Нет данных", 1) };
+
+            await MessageBoxService.ShowErrorAsync(
+                $"Не удалось загрузить статистику. Проверьте подключение к PostgreSQL. ");
         }
 
         if (_tags.Count == 0)
             _tags = new List<(string Name, int Count)> { ("Нет тегов", 1) };
+
+        DrawPaymentChart();
+        DrawUsersChart();
+        DrawTagsChart();
+        DrawProfitChart();
     }
 
     private void LoadFallbackData()

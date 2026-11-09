@@ -1,23 +1,20 @@
-﻿using Avalonia;
+using Avalonia;
 using Entities.DataDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 using System;
 
 namespace AdminDesktop;
 
 class Program
 {
+    public const int DatabaseConnectionTimeoutSeconds = 2;
+    public const int DatabaseCommandTimeoutSeconds = 15;
+    public const int DatabaseLoadingTimeoutSeconds = 15;
     [STAThread]
     public static void Main(string[] args)
     {
-        using (var db = CreateDbContext())
-        {
-            bool connected = db.Database.CanConnect();
-
-            Console.WriteLine($"Подключение: {connected}");
-        }
-
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
     }
@@ -34,15 +31,21 @@ class Program
     public static AppDataBase CreateDbContext()
     {
         var configuration = new ConfigurationBuilder()
-        .SetBasePath(AppContext.BaseDirectory)
-        .AddJsonFile("appsettings.json")
-        .Build();
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
 
         var connectionString = configuration
             .GetConnectionString("DefaultConnection");
 
+        var connectionStringBuilder = new NpgsqlConnectionStringBuilder(connectionString)
+        {
+            Timeout = DatabaseConnectionTimeoutSeconds,
+            CommandTimeout = DatabaseCommandTimeoutSeconds
+        };
+
         var options = new DbContextOptionsBuilder<AppDataBase>()
-            .UseNpgsql(connectionString)
+            .UseNpgsql(connectionStringBuilder.ConnectionString)
             .Options;
 
         return new AppDataBase(options);
